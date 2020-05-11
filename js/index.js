@@ -78,9 +78,30 @@ document.addEventListener('drop', (e) => {
     }
 }, false);
 
-//DOUBLE CLICK
+//DOUBLE CLICK, PICTURE CHANGES
 const adventureImage = document.querySelector(".img-content img");
 
 adventureImage.addEventListener('dblclick', e => {
     e.target.setAttribute('src', "img/adventure1.jpg");
+})
+
+//SCROLL HEADER COLOR CHANGES TO LIGHTBLUE
+let lastPosition = 0;
+let counter = false;
+const headerContainer = document.querySelector(".main-navigation");
+function changeHeaderColor(scrollPosition) {
+    if(lastPosition >= 500){
+        headerContainer.style.backgroundColor = "lightblue";
+    }
+}
+
+window.addEventListener('scroll', e => {
+    lastPosition = window.scrollY;
+    if(!counter){
+        window.requestAnimationFrame(() => {
+                changeHeaderColor(lastPosition);
+                counter = false;
+            });
+        counter = true;
+    }
 })
