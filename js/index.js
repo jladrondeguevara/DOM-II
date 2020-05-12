@@ -5,14 +5,16 @@ navLinks.forEach(link => {
         e.target.style.borderBottom = "solid";
         e.target.style.transform = "scale(1.3)";
         e.target.style.transition = "all 0.5s";
+        e.preventDefault();
     })
     link.addEventListener('mouseleave', (e) => {
         e.target.style.borderBottom = "none";
         e.target.style.transform = "scale(1)";
         e.target.style.transition = "all 0.5s";  
+        e.preventDefault();
     })
+    
 })
-
 
 //ANIMATION ON HEADLINE PRESS Z
 
@@ -104,4 +106,31 @@ window.addEventListener('scroll', e => {
             });
         counter = true;
     }
+})
+
+//FOCUS EVENT
+
+const container = document.querySelector('.home');
+const focusDiv = document.createElement('div');
+focusDiv.setAttribute('class', 'focus_div');
+const focusDivTitle = document.createElement('h2')
+focusDivTitle.textContent = "Focus area";
+const textArea = document.createElement('form');
+textArea.setAttribute('id', 'form');
+const textInputBox = document.createElement('input');
+textInputBox.setAttribute('type', 'text');
+
+textArea.appendChild(textInputBox)
+focusDiv.appendChild(focusDivTitle)
+focusDiv.appendChild(textArea)
+container.appendChild(focusDiv)
+focusDiv.style.margin = '1rem';
+focusDiv.align = 'center';
+
+textInputBox.addEventListener('focus', e => {
+    e.target.style.background = 'gray';
+}, true)
+
+textInputBox.addEventListener('blur', e => {
+    e.target.style.background = '';
 })
